@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using ChatAPI.Models;
 
@@ -34,6 +35,26 @@ namespace ChatAPI.Controllers
                 get.Senha = "";
 
                 return get;
+            }
+        }
+
+        [Route("api/usuarios/{RA}/{senha}")]
+        public bool Get(int RA, string senha)
+        {
+            using (UsuarioDBContext dbContext = new UsuarioDBContext())
+            {
+                Usuario get = dbContext.Usuario.FirstOrDefault(u => u.RA == RA);
+
+                bool ret = get.Senha == senha;
+
+                Random rand = new Random();
+
+                int millis = rand.Next(3000, 3500);
+
+                if (!ret)
+                    Thread.Sleep(millis);
+
+                return ret;
             }
         }
 
