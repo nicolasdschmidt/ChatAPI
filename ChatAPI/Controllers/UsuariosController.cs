@@ -40,26 +40,6 @@ namespace ChatAPI.Controllers
             }
         }
 
-        [Route("api/usuarios/{RA}/{senha}")]
-        public bool Post(int RA, string senha)
-        {
-            using (UsuarioDBContext dbContext = new UsuarioDBContext())
-            {
-                Usuario get = dbContext.Usuario.FirstOrDefault(u => u.RA == RA);
-
-                bool ret = get.Senha == senha;
-
-                Random rand = new Random();
-
-                int millis = rand.Next(3000, 3500);
-
-                if (!ret)
-                    Thread.Sleep(millis);
-
-                return ret;
-            }
-        }
-
         public void Post([FromBody]Usuario u)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
