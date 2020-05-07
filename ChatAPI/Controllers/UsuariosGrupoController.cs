@@ -4,10 +4,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ChatAPI.Models;
 
 namespace ChatAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuariosGrupoController : ApiController
     {
         // GET api/usuariosgrupo

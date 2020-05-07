@@ -5,10 +5,12 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using ChatAPI.Models;
 
 namespace ChatAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuariosController : ApiController
     {
         public IEnumerable<Usuario> Get()
