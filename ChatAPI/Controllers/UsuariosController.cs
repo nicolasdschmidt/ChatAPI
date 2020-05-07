@@ -41,7 +41,7 @@ namespace ChatAPI.Controllers
         }
 
         [Route("api/usuarios/{RA}/{senha}")]
-        public bool Get(int RA, string senha)
+        public bool Post(int RA, string senha)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
             {
