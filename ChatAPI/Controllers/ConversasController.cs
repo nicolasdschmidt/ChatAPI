@@ -9,10 +9,16 @@ using ChatAPI.Models;
 
 namespace ChatAPI.Controllers
 {
+    /// <summary>
+    /// Controlador de objetos da classe Conversa.
+    /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ConversasController : ApiController
     {
-        // GET api/conversas
+        /// <summary>
+        /// Pedido GET da lista de conversas.
+        /// </summary>
+        /// <returns>Lista de objetos da classe Conversa.</returns>
         public IEnumerable<Conversa> Get()
         {
             using (BD19191Entities dbContext = new BD19191Entities())
@@ -23,14 +29,28 @@ namespace ChatAPI.Controllers
             }
         }
 
-        // GET api/conversas/{id}
-        public Conversa Get(int id)
+        /// <summary>
+        /// Pedido GET de todas as conversas de um usuário.
+        /// </summary>
+        /// <param name="id">RA do usuário</param>
+        /// <returns>Lista de objetos da classe Conversa</returns>
+        public IEnumerable<Conversa> Get(int id)
         {
             using (BD19191Entities dbContext = new BD19191Entities())
             {
-                Conversa get = dbContext.Conversa.FirstOrDefault(c => c.Id == id);
+                List<Conversa> get = dbContext.Conversa.Where(c => c.User1 == id || c.User2 == id).ToList();
 
-                return get;
+                List<Conversa> ret = new List<Conversa>();
+
+                foreach (Conversa c in get)
+                {
+                    if (c.User1 != id)
+                        ret.Add(c);
+                    else
+                        ret.Add(c);
+                }
+
+                return ret;
             }
         }
     }

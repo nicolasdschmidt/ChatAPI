@@ -9,10 +9,16 @@ using ChatAPI.Models;
 
 namespace ChatAPI.Controllers
 {
+    /// <summary>
+    /// Controlador de relação entre usuários e grupos.
+    /// </summary>
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class UsuariosGrupoController : ApiController
     {
-        // GET api/usuariosgrupo
+        /// <summary>
+        /// Pedido GET de todas as relações entre usuários e grupos.
+        /// </summary>
+        /// <returns>Lista de objetos da classe UsuarioGrupo</returns>
         public IEnumerable<UsuariosGrupo> Get()
         {
             using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
@@ -23,22 +29,25 @@ namespace ChatAPI.Controllers
             }
         }
 
-        // GET api/usuariosgrupo
-        public UsuariosGrupo Get(string search)
+        /// <summary>
+        /// Pedido GET de todos os grupos de um usuário.
+        /// </summary>
+        /// <param name="id">RA do usuário</param>
+        /// <returns>Lista de IDs dos grupos aos quais o usuário pertence</returns>
+        public IEnumerable<int> Get(int id)
         {
             using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
             {
-                UsuariosGrupo get = null;
+                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Usuario == id).ToList();
 
-                char type = search[0];
-                int id = int.Parse(search.Substring(1));
+                List<int> ret = new List<int>();
 
-                if (search[0] == 'u')
+                foreach (UsuariosGrupo u in get)
                 {
-                    get = dbContext.UsuariosGrupo.FirstOrDefault(u => u.Usuario == id);
+                    ret.Add((int)u.Grupo);
                 }
 
-                return get;
+                return ret;
             }
         }
     }

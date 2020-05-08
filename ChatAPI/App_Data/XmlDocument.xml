@@ -481,6 +481,72 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:ChatAPI.Controllers.AmizadesController">
+            <summary>
+            Controlador de objetos da classe Amizade
+            </summary>
+        </member>
+        <member name="M:ChatAPI.Controllers.AmizadesController.Get">
+            <summary>
+            Pedido GET da lista de amizades.
+            </summary>
+            <returns>Lista de objetos da classe Amizade</returns>
+        </member>
+        <member name="M:ChatAPI.Controllers.AmizadesController.Get(System.Int32)">
+            <summary>
+            Pedido GET de todos os amigos de um usuário.
+            </summary>
+            <param name="id">RA do usuário</param>
+            <returns>Lista de RAs dos amigos do usuário</returns>
+        </member>
+        <member name="T:ChatAPI.Controllers.AuthController">
+            <summary>
+            Controlador de autenticação de usuários.
+            </summary>
+        </member>
+        <member name="M:ChatAPI.Controllers.AuthController.Post(ChatAPI.Models.Usuario)">
+            <summary>
+            Método de autenticação (POST)
+            </summary>
+            <param name="auth">Objeto da classe Usuário (apenas RA e senha)</param>
+            <returns>Se o usuário deve ser autenticado.</returns>
+        </member>
+        <member name="T:ChatAPI.Controllers.ConversasController">
+            <summary>
+            Controlador de objetos da classe Conversa.
+            </summary>
+        </member>
+        <member name="M:ChatAPI.Controllers.ConversasController.Get">
+            <summary>
+            Pedido GET da lista de conversas.
+            </summary>
+            <returns>Lista de objetos da classe Conversa.</returns>
+        </member>
+        <member name="M:ChatAPI.Controllers.ConversasController.Get(System.Int32)">
+            <summary>
+            Pedido GET de todas as conversas de um usuário.
+            </summary>
+            <param name="id">RA do usuário</param>
+            <returns>Lista de objetos da classe Conversa</returns>
+        </member>
+        <member name="T:ChatAPI.Controllers.GruposController">
+            <summary>
+            Controlador de objetos da classe Grupo.
+            </summary>
+        </member>
+        <member name="M:ChatAPI.Controllers.GruposController.Get">
+            <summary>
+            Pedido GET da lista de grupos.
+            </summary>
+            <returns>Lista de objetos da classe Grupo.</returns>
+        </member>
+        <member name="M:ChatAPI.Controllers.GruposController.Get(System.Int32)">
+            <summary>
+            Pedido GET de um grupo específico.
+            </summary>
+            <param name="id">Id do grupo</param>
+            <returns>Objeto da classe Grupo</returns>
+        </member>
         <member name="T:ChatAPI.Controllers.UsuariosController">
             <summary>
             Controlador de objetos da classe Usuario.
@@ -505,6 +571,24 @@
             </summary>
             <param name="u">Objeto da classe Usuário</param>
             <returns>Se o cadastro foi bem-sucedido</returns>
+        </member>
+        <member name="T:ChatAPI.Controllers.UsuariosGrupoController">
+            <summary>
+            Controlador de relação entre usuários e grupos.
+            </summary>
+        </member>
+        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.Get">
+            <summary>
+            Pedido GET de todas as relações entre usuários e grupos.
+            </summary>
+            <returns>Lista de objetos da classe UsuarioGrupo</returns>
+        </member>
+        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.Get(System.Int32)">
+            <summary>
+            Pedido GET de todos os grupos de um usuário.
+            </summary>
+            <param name="id">RA do usuário</param>
+            <returns>Lista de IDs dos grupos aos quais o usuário pertence</returns>
         </member>
     </members>
 </doc>
