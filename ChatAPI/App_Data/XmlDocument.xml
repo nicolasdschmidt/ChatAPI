@@ -572,6 +572,13 @@
             <param name="u">Objeto da classe Usuário</param>
             <returns>Se o cadastro foi bem-sucedido</returns>
         </member>
+        <member name="M:ChatAPI.Controllers.UsuariosController.Edit(ChatAPI.Models.Usuario)">
+            <summary>
+            POST de edição do cadastro de um usuário.
+            </summary>
+            <param name="u">Objeto da classe Usuário</param>
+            <returns>O resultado da tentativa de edição.</returns>
+        </member>
         <member name="T:ChatAPI.Controllers.UsuariosGrupoController">
             <summary>
             Controlador de relação entre usuários e grupos.
