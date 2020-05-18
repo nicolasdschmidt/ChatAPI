@@ -20,18 +20,21 @@ namespace ChatAPI.Controllers
         /// Pedido GET da lista de usuários.
         /// </summary>
         /// <returns>Lista de objetos da classe Usuario</returns>
-        public IEnumerable<Usuario> Get()
+        [HttpGet]
+        [Route("api/Usuario")]
+        public HttpResponseMessage Get()
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
             {
                 List<Usuario> get = dbContext.Usuario.ToList();
+                List<UsuarioRetorno> ret = new List<UsuarioRetorno>();
 
                 foreach (Usuario u in get)
                 {
-                    u.Senha = "";
+                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn));
                 }
 
-                return get;
+                return Request.CreateResponse(HttpStatusCode.OK, ret);
             }
         }
 
@@ -40,15 +43,26 @@ namespace ChatAPI.Controllers
         /// </summary>
         /// <param name="id">RA do usuário</param>
         /// <returns>Um objeto da classe Usuario</returns>
-        public Usuario Get(int id)
+        [HttpGet]
+        [Route("api/Usuario/{id}")]
+        public HttpResponseMessage Get(int id)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
             {
                 Usuario get = dbContext.Usuario.FirstOrDefault(u => u.RA == id);
 
-                get.Senha = "";
+                if (get != null)
+                {
+                    UsuarioRetorno ret = new UsuarioRetorno(get.RA, get.Nome, get.Status, get.Twitter, get.Instagram, get.LinkedIn);
 
-                return get;
+                    return Request.CreateResponse(HttpStatusCode.OK, ret);
+                }
+                else
+                {
+                    var message = string.Format("User com id = {0} não encontrado", id);
+                    HttpError err = new HttpError(message);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, err);
+                }
             }
         }
 
@@ -57,6 +71,8 @@ namespace ChatAPI.Controllers
         /// </summary>
         /// <param name="u">Objeto da classe Usuário</param>
         /// <returns>Se o cadastro foi bem-sucedido</returns>
+        [HttpPost]
+        [Route("api/Usuario")]
         public bool Post([FromBody]Usuario u)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
@@ -71,6 +87,26 @@ namespace ChatAPI.Controllers
                 {
                     return false;
                 }
+            }
+        }
+
+        class UsuarioRetorno
+        {
+            public int RA;
+            public string Nome;
+            public int Status;
+            public string Twitter;
+            public string Instagram;
+            public string LinkedIn;
+
+            public UsuarioRetorno(int RA, string Nome, int Status, string Twitter, string Instagram, string LinkedIn)
+            {
+                this.RA = RA;
+                this.Nome = Nome;
+                this.Status = Status;
+                this.Twitter = Twitter;
+                this.Instagram = Instagram;
+                this.LinkedIn = LinkedIn;
             }
         }
     }
