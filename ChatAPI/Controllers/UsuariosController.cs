@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using ChatAPI.Models;
@@ -132,6 +131,9 @@ namespace ChatAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Classe de retorno de Usuario. Omite informações como a senha do usuario.
+        /// </summary>
         class UsuarioRetorno
         {
             public int RA;

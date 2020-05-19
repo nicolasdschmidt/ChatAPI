@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ChatAPI
 {
@@ -16,7 +17,9 @@ namespace ChatAPI
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors();
+            // Permitir CORS globalmente
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttr);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
