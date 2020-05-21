@@ -8,6 +8,7 @@ using System.Threading;
 using System.Web.Http.Cors;
 using System.Web.Http;
 using ChatAPI.Models;
+using System.Data.Entity;
 
 namespace ChatAPI.Controllers
 {
@@ -22,7 +23,9 @@ namespace ChatAPI.Controllers
         /// </summary>
         /// <param name="auth">Objeto da classe Usuário (apenas RA e senha)</param>
         /// <returns>Se o usuário deve ser autenticado.</returns>
-        public bool Post([FromBody]Usuario auth)
+        [HttpPost]
+        [Route("api/Auth")]
+        public bool Autenticacao([FromBody]Usuario auth)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
             {
@@ -32,12 +35,40 @@ namespace ChatAPI.Controllers
 
                 Random rand = new Random();
 
-                int millis = rand.Next(3000, 3500);
+                int millis = rand.Next(1000, 1500);
 
                 if (!ret)
                     Thread.Sleep(millis);
 
                 return ret;
+            }
+        }
+
+        [HttpPost]
+        [Route("api/Auth/trocarsenha")]
+        public bool TrocarSenha([FromBody]int RA, string antiga, string nova)
+        {
+            using (UsuarioDBContext dbContext = new UsuarioDBContext())
+            {
+                Usuario get = dbContext.Usuario.FirstOrDefault(u => u.RA == RA);
+
+                bool auth = get.Senha == antiga;
+
+                Random rand = new Random();
+
+                int millis = rand.Next(1000, 1500);
+
+                if (!auth)
+                {
+                    Thread.Sleep(millis);
+                    return false;
+                }
+                else
+                {
+                    get.Senha = nova;
+                    dbContext.Entry(get).State = EntityState.Modified;
+                    dbContext.SaveChanges();
+                }
             }
         }
     }

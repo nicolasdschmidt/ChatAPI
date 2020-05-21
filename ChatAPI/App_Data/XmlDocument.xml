@@ -579,6 +579,11 @@
             <param name="u">Objeto da classe Usuário</param>
             <returns>O resultado da tentativa de edição.</returns>
         </member>
+        <member name="T:ChatAPI.Controllers.UsuariosController.UsuarioRetorno">
+            <summary>
+            Classe de retorno de Usuario. Omite informações como a senha do usuario.
+            </summary>
+        </member>
         <member name="T:ChatAPI.Controllers.UsuariosGrupoController">
             <summary>
             Controlador de relação entre usuários e grupos.
