@@ -44,6 +44,13 @@ namespace ChatAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Método para alterar a senha de um usuário (POST)
+        /// </summary>
+        /// <param name="RA">RA do usuario a se alterar a senha</param>
+        /// <param name="antiga">Senha atual do usuário</param>
+        /// <param name="nova">Senha nova, que se tornará a senha do usuário</param>
+        /// <returns>Se a troca de senha foi efetuada com sucesso</returns>
         [HttpPost]
         [Route("api/Auth/trocarsenha")]
         public bool TrocarSenha([FromBody]int RA, string antiga, string nova)
@@ -65,9 +72,17 @@ namespace ChatAPI.Controllers
                 }
                 else
                 {
-                    get.Senha = nova;
-                    dbContext.Entry(get).State = EntityState.Modified;
-                    dbContext.SaveChanges();
+                    try
+                    {
+                        get.Senha = nova;
+                        dbContext.Entry(get).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        return false;
+                    }
                 }
             }
         }
