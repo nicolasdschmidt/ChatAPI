@@ -504,12 +504,21 @@
             Controlador de autenticação de usuários.
             </summary>
         </member>
-        <member name="M:ChatAPI.Controllers.AuthController.Post(ChatAPI.Models.Usuario)">
+        <member name="M:ChatAPI.Controllers.AuthController.Autenticacao(ChatAPI.Models.Usuario)">
             <summary>
             Método de autenticação (POST)
             </summary>
             <param name="auth">Objeto da classe Usuário (apenas RA e senha)</param>
             <returns>Se o usuário deve ser autenticado.</returns>
+        </member>
+        <member name="M:ChatAPI.Controllers.AuthController.TrocarSenha(System.Int32,System.String,System.String)">
+            <summary>
+            Método para alterar a senha de um usuário (POST)
+            </summary>
+            <param name="RA">RA do usuario a se alterar a senha</param>
+            <param name="antiga">Senha atual do usuário</param>
+            <param name="nova">Senha nova, que se tornará a senha do usuário</param>
+            <returns>Se a troca de senha foi efetuada com sucesso</returns>
         </member>
         <member name="T:ChatAPI.Controllers.ConversasController">
             <summary>

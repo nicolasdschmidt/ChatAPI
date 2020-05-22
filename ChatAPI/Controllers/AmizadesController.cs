@@ -30,6 +30,24 @@ namespace ChatAPI.Controllers
         }
 
         /// <summary>
+        /// Método para retornar a Amizade entre dois usuários
+        /// </summary>
+        /// <param name="raUser1">RA do primeiro Usuario</param>
+        /// <param name="raUser2">RA do segundo Usuario</param>
+        /// <returns>Objeto Amizade que representa a amizade entre os dois usuários, ou null se não encontrada</returns>
+        [HttpGet]
+        [Route("api/Amizades/{raUser1}/{raUser2}")]
+        public Amizade Get(int raUser1, int raUser2)
+        {
+            using (AmizadeDBContext dbContext = new AmizadeDBContext())
+            {
+                Amizade get = dbContext.Amizade.FirstOrDefault(a => (a.User1 == raUser1 && a.User2 == raUser2) || (a.User1 == raUser2 && a.User2 == raUser1));
+
+                return get;
+            }
+        }
+
+        /// <summary>
         /// Pedido GET de todos os amigos de um usuário.
         /// </summary>
         /// <param name="id">RA do usuário</param>
