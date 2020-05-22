@@ -29,6 +29,18 @@ namespace ChatAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("api/Amizades/{raUser1}/{raUser2}")]
+        public IEnumerable<Amizade> Get(int raUser1, int raUser2)
+        {
+            using (AmizadeDBContext dbContext = new AmizadeDBContext())
+            {
+                List<Amizade> get = (dbContext.Amizade.Where(a => (a.User1 == raUser1 && a.User2 == raUser2) || (a.User1 == raUser2 && a.User2 == raUser1))).ToList();
+
+                return get;
+            }
+        }
+
         /// <summary>
         /// Pedido GET de todos os amigos de um usuário.
         /// </summary>
