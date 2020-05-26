@@ -492,6 +492,14 @@
             </summary>
             <returns>Lista de objetos da classe Amizade</returns>
         </member>
+        <member name="M:ChatAPI.Controllers.AmizadesController.Get(System.Int32,System.Int32)">
+            <summary>
+            Método para retornar a Amizade entre dois usuários
+            </summary>
+            <param name="raUser1">RA do primeiro Usuario</param>
+            <param name="raUser2">RA do segundo Usuario</param>
+            <returns>Objeto Amizade que representa a amizade entre os dois usuários, ou null se não encontrada</returns>
+        </member>
         <member name="M:ChatAPI.Controllers.AmizadesController.Get(System.Int32)">
             <summary>
             Pedido GET de todos os amigos de um usuário.

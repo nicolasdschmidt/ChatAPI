@@ -21,5 +21,6 @@ namespace ChatAPI.Models
         public string Twitter { get; set; }
         public string Instagram { get; set; }
         public string LinkedIn { get; set; }
+        public string Foto { get; set; }
     }
 }

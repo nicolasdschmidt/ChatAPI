@@ -4,34 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="UsuariosGrupo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Grupo" Type="int" />
-          <Property Name="Usuario" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupo" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="int" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="UsuariosGrupo" EntityType="Self.UsuariosGrupo" Schema="BD19191" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UsuariosGrupoDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UsuariosGrupo" EntityType="Models.UsuariosGrupo" />
+        </EntityContainer>
         <EntityType Name="UsuariosGrupo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Grupo" Type="Int32" />
-          <Property Name="Usuario" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grupo" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="UsuariosGrupoDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="UsuariosGrupo" EntityType="Self.UsuariosGrupo" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -41,9 +40,9 @@
           <EntitySetMapping Name="UsuariosGrupo">
             <EntityTypeMapping TypeName="Models.UsuariosGrupo">
               <MappingFragment StoreEntitySet="UsuariosGrupo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

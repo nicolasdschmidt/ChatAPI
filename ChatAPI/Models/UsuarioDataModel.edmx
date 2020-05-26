@@ -16,6 +16,7 @@
           <Property Name="Twitter" Type="varchar" MaxLength="50" />
           <Property Name="Instagram" Type="varchar" MaxLength="50" />
           <Property Name="LinkedIn" Type="varchar" MaxLength="50" />
+          <Property Name="Foto" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="BD19191" store:Type="Tables" />
@@ -38,6 +39,7 @@
           <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LinkedIn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Foto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -48,6 +50,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="Models.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
                 <ScalarProperty Name="Instagram" ColumnName="Instagram" />
                 <ScalarProperty Name="Twitter" ColumnName="Twitter" />

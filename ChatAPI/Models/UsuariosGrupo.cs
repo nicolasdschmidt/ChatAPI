@@ -15,7 +15,7 @@ namespace ChatAPI.Models
     public partial class UsuariosGrupo
     {
         public int Id { get; set; }
-        public Nullable<int> Grupo { get; set; }
-        public Nullable<int> Usuario { get; set; }
+        public int Grupo { get; set; }
+        public int Usuario { get; set; }
     }
 }

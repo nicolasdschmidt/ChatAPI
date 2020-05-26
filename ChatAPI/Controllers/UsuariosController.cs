@@ -31,7 +31,7 @@ namespace ChatAPI.Controllers
 
                 foreach (Usuario u in get)
                 {
-                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn));
+                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn, u.Foto));
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, ret);
@@ -53,7 +53,7 @@ namespace ChatAPI.Controllers
 
                 if (get != null)
                 {
-                    UsuarioRetorno ret = new UsuarioRetorno(get.RA, get.Nome, get.Status, get.Twitter, get.Instagram, get.LinkedIn);
+                    UsuarioRetorno ret = new UsuarioRetorno(get.RA, get.Nome, get.Status, get.Twitter, get.Instagram, get.LinkedIn, get.Foto);
 
                     return Request.CreateResponse(HttpStatusCode.OK, ret);
                 }
@@ -111,6 +111,8 @@ namespace ChatAPI.Controllers
                         get.Twitter = user.Twitter;
                         get.Instagram = user.Instagram;
                         get.LinkedIn = user.LinkedIn;
+                        if (user.Foto != "")
+                            get.Foto = user.Foto;
 
                         dbContext.Entry(get).State = EntityState.Modified;
                         dbContext.SaveChanges();
@@ -142,8 +144,9 @@ namespace ChatAPI.Controllers
             public string Twitter;
             public string Instagram;
             public string LinkedIn;
+            public string Foto;
 
-            public UsuarioRetorno(int RA, string Nome, int Status, string Twitter, string Instagram, string LinkedIn)
+            public UsuarioRetorno(int RA, string Nome, int Status, string Twitter, string Instagram, string LinkedIn, string Foto)
             {
                 this.RA = RA;
                 this.Nome = Nome;
@@ -151,6 +154,7 @@ namespace ChatAPI.Controllers
                 this.Twitter = Twitter;
                 this.Instagram = Instagram;
                 this.LinkedIn = LinkedIn;
+                this.Foto = Foto;
             }
         }
     }

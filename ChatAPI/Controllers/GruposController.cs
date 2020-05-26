@@ -43,5 +43,51 @@ namespace ChatAPI.Controllers
                 return get;
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage Criar(Grupo grupo)
+        {
+            using (GrupoDBContext dbContext = new GrupoDBContext())
+            {
+                try
+                {
+                    if (grupo == null)
+                    {
+                        var message = "Grupo não pode ser null";
+                        HttpError err = new HttpError(message);
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+                    }
+
+                    if (grupo.Nome == null ||
+                        grupo.Criador == null)
+                    {
+                        var message = "Nome ou criador ausentes";
+                        HttpError err = new HttpError(message);
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, err);
+                    }
+
+                    /*Grupo get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
+                    if (get != null)
+                    {
+                        var message = "Grupo já existe";
+                        HttpError err = new HttpError(message);
+                        return Request.CreateResponse(HttpStatusCode.Conflict, err);
+                    }*/
+
+                    grupo.Criacao = DateTime.Now;
+
+                    dbContext.Grupo.Add(grupo);
+                    dbContext.SaveChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+
+                }
+                catch (Exception e)
+                {
+                    HttpError err = new HttpError(e.Message);
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, err);
+                }
+            }
+        }
     }
 }
