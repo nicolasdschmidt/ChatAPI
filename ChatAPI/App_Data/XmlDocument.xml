@@ -582,7 +582,7 @@
             <param name="id">RA do usuário</param>
             <returns>Um objeto da classe Usuario</returns>
         </member>
-        <member name="M:ChatAPI.Controllers.UsuariosController.Post(ChatAPI.Models.Usuario)">
+        <member name="M:ChatAPI.Controllers.UsuariosController.New(ChatAPI.Models.Usuario)">
             <summary>
             POST de cadastro de um usuário.
             </summary>

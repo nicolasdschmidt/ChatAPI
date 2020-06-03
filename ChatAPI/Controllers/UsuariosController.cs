@@ -67,25 +67,58 @@ namespace ChatAPI.Controllers
         }
 
         /// <summary>
+        /// Pedido GET de todos os usuários, menos o definido.
+        /// </summary>
+        /// <returns>Lista de objetos da classe Usuario</returns>
+        [HttpGet]
+        [Route("api/Usuario/TodosMenos/{id}")]
+        public HttpResponseMessage TodosMenos(int id)
+        {
+            using (UsuarioDBContext dbContext = new UsuarioDBContext())
+            {
+                List<Usuario> get = dbContext.Usuario.ToList();
+                List<UsuarioRetorno> ret = new List<UsuarioRetorno>();
+
+                foreach (Usuario u in get)
+                {
+                    if (u.RA != id)
+                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn, u.Foto));
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, ret);
+            }
+        }
+
+        /// <summary>
         /// POST de cadastro de um usuário.
         /// </summary>
         /// <param name="u">Objeto da classe Usuário</param>
         /// <returns>Se o cadastro foi bem-sucedido</returns>
         [HttpPost]
         [Route("api/Usuario")]
-        public bool Post([FromBody]Usuario u)
+        public HttpResponseMessage New([FromBody]Usuario user)
         {
             using (UsuarioDBContext dbContext = new UsuarioDBContext())
             {
                 try
                 {
-                    dbContext.Usuario.Add(u);
+                    Usuario get = dbContext.Usuario.FirstOrDefault(u => u.RA == user.RA);
+
+                    if (get != null)
+                    {
+                        var message = "Usuário com RA " + user.RA + "já existe.";
+                        HttpError err = new HttpError(message);
+                        return Request.CreateResponse(HttpStatusCode.Conflict, err);
+                    }
+
+                    dbContext.Usuario.Add(user);
                     dbContext.SaveChanges();
-                    return true;
+                    return Request.CreateResponse(HttpStatusCode.OK, true);
                 }
                 catch (Exception e)
                 {
-                    return false;
+                    HttpError err = new HttpError(e.Message);
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, err);
                 }
             }
         }
