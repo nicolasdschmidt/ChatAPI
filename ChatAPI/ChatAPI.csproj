@@ -163,6 +163,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AmizadesController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\AvaliacoesController.cs" />
     <Compile Include="Controllers\ConversasController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -188,6 +189,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AmizadeDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvaliacaoDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvaliacaoDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvaliacaoDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvaliacaoDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AvaliacaoDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AvaliacaoDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Avaliacoes.cs">
+      <DependentUpon>AvaliacaoDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Conversa.cs">
       <DependentUpon>ConversasDataModel.tt</DependentUpon>
@@ -281,6 +300,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AmizadeDataModel.edmx</DependentUpon>
       <LastGenOutput>AmizadeDataModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AvaliacaoDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AvaliacaoDataModel.edmx</DependentUpon>
+      <LastGenOutput>AvaliacaoDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AvaliacaoDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AvaliacaoDataModel.edmx</DependentUpon>
+      <LastGenOutput>AvaliacaoDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ConversasDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -378,6 +407,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <EntityDeploy Include="Models\AvaliacaoDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AvaliacaoDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AvaliacaoDataModel.edmx.diagram">
+      <DependentUpon>AvaliacaoDataModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
