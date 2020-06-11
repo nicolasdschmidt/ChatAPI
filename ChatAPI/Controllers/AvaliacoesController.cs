@@ -44,7 +44,7 @@ namespace ChatAPI.Controllers
 
                     dbContext.Avaliacoes.Add(a);
                     dbContext.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                    return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 catch (Exception e)
                 {

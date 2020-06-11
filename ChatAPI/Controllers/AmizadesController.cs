@@ -71,5 +71,30 @@ namespace ChatAPI.Controllers
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Método para criar amizade
+        /// </summary>
+        /// <param name="a">Amizade</param>
+        /// <returns>O status da tentativa de inserção</returns>
+        public HttpResponseMessage Post([FromBody] Amizade a)
+        {
+            using (AmizadeDBContext dbContext = new AmizadeDBContext())
+            {
+                try
+                {
+                    if (a == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    if (a.User1 == null || a.User2 == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    dbContext.Amizade.Add(a);
+                    dbContext.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                catch (Exception e)
+                {
+                    HttpError err = new HttpError(e.Message);
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, err);
+                }
+            }
+        }
     }
 }

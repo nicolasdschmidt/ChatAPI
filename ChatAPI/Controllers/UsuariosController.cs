@@ -113,7 +113,7 @@ namespace ChatAPI.Controllers
 
                     dbContext.Usuario.Add(user);
                     dbContext.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, true);
+                    return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 catch (Exception e)
                 {
