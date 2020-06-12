@@ -9,10 +9,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Criador" Type="int" Nullable="false" />
-          <Property Name="Descricao" Type="varchar" MaxLength="200" />
           <Property Name="Criacao" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ModelsStoreContainer">
@@ -45,7 +44,6 @@
             <EntityTypeMapping TypeName="Models.Grupo">
               <MappingFragment StoreEntitySet="Grupo">
                 <ScalarProperty Name="Criacao" ColumnName="Criacao" />
-                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="Criador" ColumnName="Criador" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

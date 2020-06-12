@@ -50,5 +50,28 @@ namespace ChatAPI.Controllers
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Método para adicionar usuários a um grupo
+        /// </summary>
+        /// <param name="u">Associação usuário e grupo</param>
+        /// <returns>Status da tentativa de associação</returns>
+        public HttpResponseMessage Post([FromBody] UsuariosGrupo u)
+        {
+            using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
+            {
+                try
+                {
+                    dbContext.UsuariosGrupo.Add(u);
+                    dbContext.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                catch (Exception e)
+                {
+                    HttpError err = new HttpError(e.Message);
+                    return Request.CreateResponse(HttpStatusCode.InternalServerError, err);
+                }
+            }
+        }
     }
 }

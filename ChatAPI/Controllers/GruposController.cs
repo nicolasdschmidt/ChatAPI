@@ -66,20 +66,21 @@ namespace ChatAPI.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest, err);
                     }
 
-                    /*Grupo get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
-                    if (get != null)
+                    Grupo get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
+                    Random r = new Random();
+
+                    while(get != null)
                     {
-                        var message = "Grupo já existe";
-                        HttpError err = new HttpError(message);
-                        return Request.CreateResponse(HttpStatusCode.Conflict, err);
-                    }*/
+                        grupo.Id = r.Next(10, 10000);
+                        get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
+                    }
 
                     grupo.Criacao = DateTime.Now;
 
                     dbContext.Grupo.Add(grupo);
                     dbContext.SaveChanges();
 
-                    return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK, grupo.Id);
 
                 }
                 catch (Exception e)
