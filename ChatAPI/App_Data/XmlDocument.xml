@@ -507,6 +507,13 @@
             <param name="id">RA do usuário</param>
             <returns>Lista de RAs dos amigos do usuário</returns>
         </member>
+        <member name="M:ChatAPI.Controllers.AmizadesController.Post(ChatAPI.Models.Amizade)">
+            <summary>
+            Método para criar amizade
+            </summary>
+            <param name="a">Amizade</param>
+            <returns>O status da tentativa de inserção</returns>
+        </member>
         <member name="T:ChatAPI.Controllers.AuthController">
             <summary>
             Controlador de autenticação de usuários.

@@ -85,6 +85,9 @@ namespace ChatAPI.Controllers
                 {
                     if (a == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
                     if (a.User1 == null || a.User2 == null) return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+                    a.Data = DateTime.Now;
+
                     dbContext.Amizade.Add(a);
                     dbContext.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK);
