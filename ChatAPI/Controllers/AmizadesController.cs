@@ -94,7 +94,7 @@ namespace ChatAPI.Controllers
                 }
                 catch (Exception e)
                 {
-                    HttpError err = new HttpError(e.Message);
+                    HttpError err = new HttpError(e, true);
                     return Request.CreateResponse(HttpStatusCode.InternalServerError, err);
                 }
             }
