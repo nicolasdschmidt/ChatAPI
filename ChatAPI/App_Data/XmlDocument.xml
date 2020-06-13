@@ -638,7 +638,7 @@
             </summary>
             <returns>Lista de objetos da classe UsuarioGrupo</returns>
         </member>
-        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.Get(System.Int32)">
+        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.GetFromUser(System.Int32)">
             <summary>
             Pedido GET de todos os grupos de um usuário.
             </summary>

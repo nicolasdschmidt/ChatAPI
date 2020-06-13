@@ -52,28 +52,6 @@ namespace ChatAPI.Controllers
         }
 
         /// <summary>
-        /// Pedido GET de todos os usuários de um grupo.
-        /// </summary>
-        /// <param name="id">Id do grupo</param>
-        /// <returns>Lista de RAs dos usuarios que pertencem ao grupo</returns>
-        public IEnumerable<int> GetFromGroup(Grupo grupo)
-        {
-            using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
-            {
-                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Grupo == grupo.Id).ToList();
-
-                List<int> ret = new List<int>();
-
-                foreach (UsuariosGrupo u in get)
-                {
-                    ret.Add((int)u.Usuario);
-                }
-
-                return ret;
-            }
-        }
-
-        /// <summary>
         /// Método para adicionar usuários a um grupo
         /// </summary>
         /// <param name="u">Associação usuário e grupo</param>
@@ -84,6 +62,11 @@ namespace ChatAPI.Controllers
             {
                 try
                 {
+                    UsuariosGrupo get = dbContext.UsuariosGrupo.FirstOrDefault(g => g.Usuario == u.Usuario && g.Grupo == u.Grupo);
+
+                    if (get != null)
+                        return Request.CreateResponse(HttpStatusCode.Conflict, "Assossiação já existe");
+
                     dbContext.UsuariosGrupo.Add(u);
                     dbContext.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK);
