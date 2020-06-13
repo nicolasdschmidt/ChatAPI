@@ -34,7 +34,7 @@ namespace ChatAPI.Controllers
         /// </summary>
         /// <param name="id">RA do usuário</param>
         /// <returns>Lista de IDs dos grupos aos quais o usuário pertence</returns>
-        public IEnumerable<int> Get(int id)
+        public IEnumerable<int> GetFromUser(int id)
         {
             using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
             {
@@ -45,6 +45,28 @@ namespace ChatAPI.Controllers
                 foreach (UsuariosGrupo u in get)
                 {
                     ret.Add((int)u.Grupo);
+                }
+
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Pedido GET de todos os usuários de um grupo.
+        /// </summary>
+        /// <param name="id">Id do grupo</param>
+        /// <returns>Lista de RAs dos usuarios que pertencem ao grupo</returns>
+        public IEnumerable<int> GetFromGroup(int id)
+        {
+            using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
+            {
+                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Grupo == id).ToList();
+
+                List<int> ret = new List<int>();
+
+                foreach (UsuariosGrupo u in get)
+                {
+                    ret.Add((int)u.Usuario);
                 }
 
                 return ret;
