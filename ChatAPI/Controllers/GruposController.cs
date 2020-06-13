@@ -66,8 +66,10 @@ namespace ChatAPI.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest, err);
                     }
 
-                    Grupo get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
                     Random r = new Random();
+                    grupo.Id = r.Next(10, 10000);
+
+                    Grupo get = dbContext.Grupo.FirstOrDefault(g => g.Id == grupo.Id);
 
                     while(get != null)
                     {

@@ -645,5 +645,12 @@
             <param name="id">RA do usuário</param>
             <returns>Lista de IDs dos grupos aos quais o usuário pertence</returns>
         </member>
+        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.Post(ChatAPI.Models.UsuariosGrupo)">
+            <summary>
+            Método para adicionar usuários a um grupo
+            </summary>
+            <param name="u">Associação usuário e grupo</param>
+            <returns>Status da tentativa de associação</returns>
+        </member>
     </members>
 </doc>

@@ -17,7 +17,6 @@ namespace ChatAPI.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public int Criador { get; set; }
-        public string Descricao { get; set; }
         public System.DateTime Criacao { get; set; }
     }
 }
