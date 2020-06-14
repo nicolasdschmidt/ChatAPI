@@ -56,12 +56,13 @@ namespace ChatAPI.Controllers
         /// </summary>
         /// <param name="id">Id do grupo</param>
         /// <returns>Lista de RAs dos usuarios que pertencem ao grupo</returns>
+        [HttpGet]
         [Route("api/UsuariosGrupo/grupo/{grupo}")]
-        public IEnumerable<int> GetFromGroup(Grupo grupo)
+        public HttpResponseMessage GetFromGroup(int grupo)
         {
             using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
             {
-                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Grupo == grupo.Id).ToList();
+                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Grupo == grupo).ToList();
 
                 List<int> ret = new List<int>();
 
@@ -70,7 +71,7 @@ namespace ChatAPI.Controllers
                     ret.Add((int)u.Usuario);
                 }
 
-                return ret;
+                return Request.CreateResponse(HttpStatusCode.OK, ret);
             }
         }
 

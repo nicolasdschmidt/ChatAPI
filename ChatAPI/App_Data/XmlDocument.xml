@@ -645,6 +645,13 @@
             <param name="id">RA do usuário</param>
             <returns>Lista de IDs dos grupos aos quais o usuário pertence</returns>
         </member>
+        <member name="M:ChatAPI.Controllers.UsuariosGrupoController.GetFromGroup(System.Int32)">
+            <summary>
+            Pedido GET de todos os usuários de um grupo.
+            </summary>
+            <param name="id">Id do grupo</param>
+            <returns>Lista de RAs dos usuarios que pertencem ao grupo</returns>
+        </member>
         <member name="M:ChatAPI.Controllers.UsuariosGrupoController.Post(ChatAPI.Models.UsuariosGrupo)">
             <summary>
             Método para adicionar usuários a um grupo
