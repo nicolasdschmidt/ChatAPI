@@ -52,6 +52,31 @@ namespace ChatAPI.Controllers
         }
 
         /// <summary>
+        /// Pedido GET de todos os usuários de um grupo.
+        /// </summary>
+        /// <param name="id">Id do grupo</param>
+        /// <returns>Lista de RAs dos usuarios que pertencem ao grupo</returns>
+        [Route("api/UsuariosGrupo/grupo/{grupo}")]
+        public IEnumerable<int> GetFromGroup(Grupo grupo)
+        {
+            using (UsuariosGrupoDBContext dbContext = new UsuariosGrupoDBContext())
+            {
+                List<UsuariosGrupo> get = dbContext.UsuariosGrupo.Where(g => g.Grupo == grupo.Id).ToList();
+
+                List<int> ret = new List<int>();
+
+                foreach (UsuariosGrupo u in get)
+                {
+                    ret.Add((int)u.Usuario);
+                }
+
+                return ret;
+            }
+        }
+
+
+
+        /// <summary>
         /// Método para adicionar usuários a um grupo
         /// </summary>
         /// <param name="u">Associação usuário e grupo</param>
