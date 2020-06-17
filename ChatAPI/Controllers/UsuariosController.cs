@@ -31,7 +31,7 @@ namespace ChatAPI.Controllers
 
                 foreach (Usuario u in get)
                 {
-                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn, u.Foto));
+                    ret.Add(new UsuarioRetorno(u));
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, ret);
@@ -53,7 +53,7 @@ namespace ChatAPI.Controllers
 
                 if (get != null)
                 {
-                    UsuarioRetorno ret = new UsuarioRetorno(get.RA, get.Nome, get.Status, get.Twitter, get.Instagram, get.LinkedIn, get.Foto);
+                    UsuarioRetorno ret = new UsuarioRetorno(get);
 
                     return Request.CreateResponse(HttpStatusCode.OK, ret);
                 }
@@ -82,7 +82,7 @@ namespace ChatAPI.Controllers
                 foreach (Usuario u in get)
                 {
                     if (u.RA != id)
-                    ret.Add(new UsuarioRetorno(u.RA, u.Nome, u.Status, u.Twitter, u.Instagram, u.LinkedIn, u.Foto));
+                    ret.Add(new UsuarioRetorno(u));
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK, ret);
@@ -178,6 +178,17 @@ namespace ChatAPI.Controllers
             public string Instagram;
             public string LinkedIn;
             public string Foto;
+
+            public UsuarioRetorno(Usuario u)
+            {
+                this.RA = u.RA;
+                this.Nome = u.Nome;
+                this.Status = u.Status;
+                this.Twitter = u.Twitter;
+                this.Instagram = u.Instagram;
+                this.LinkedIn = u.LinkedIn;
+                this.Foto = u.Foto;
+            }
 
             public UsuarioRetorno(int RA, string Nome, int Status, string Twitter, string Instagram, string LinkedIn, string Foto)
             {
